@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import OneCard from "../one-card/one-card";
-import getContact from "../../../api/get-contact/getContact";
+import {getContact} from "../../../api/get-contact/getContact";
 
 function MenuLeft({
-  isChange
+  isChange , setFilterContact
 }: {
-  isChange:boolean;
+  isChange:boolean;setFilterContact : React.Dispatch<React.SetStateAction<{}>>
 }) {
 
   const [contacts, setContacts] = useState([]);
@@ -25,7 +25,7 @@ function MenuLeft({
      border-neutral-200 border-1 border-b  shadow-md"
       >
         {contacts.map((item) => (
-          <OneCard Contact={item} key={item.id} />
+          <OneCard Contact={item} key={item.id} setFilterContact = {setFilterContact} />
         ))}
       </div>
     </div>
