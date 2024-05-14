@@ -33,17 +33,16 @@ import React, { useState, useEffect } from 'react'
 function InputContact({ title, setValue, showError, valuee }: { title: string, setValue: React.Dispatch<React.SetStateAction<string>>, showError: boolean, valuee: string }) {
   const [inputValue, setInputValue] = useState("");
 
-  // Update the local state when the valuee prop changes
   useEffect(() => {
     setInputValue(valuee);
     setValue(valuee);
-
   }, [valuee]);
 
   function handleTitle(e: React.ChangeEvent<HTMLInputElement>) {
     setValue(e.target.value);
     setInputValue(e.target.value);
   }
+  
   return (
     <div className="flex flex-col gap-1">
       <span>{title} :</span>

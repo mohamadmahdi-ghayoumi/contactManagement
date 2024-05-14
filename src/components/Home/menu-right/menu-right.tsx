@@ -22,6 +22,7 @@ function MenuRight({
   const [relation, setRelation] = useState("");
   const [email, setEmail] = useState("");
   const [showErrors, setShowErrors] = useState(false);
+
   const titles: TypeTitles = [
     { title: "نام", value: filterContact.name, setValue: setName },
     { title: "نام خانوادگی", value: filterContact.family, setValue: setFamily },
@@ -35,7 +36,12 @@ function MenuRight({
   ];
   console.log(filterContact);
   function addContact() {
-    if (!!name && !!family && !!numberPhone && !!relation && !!email &&       filterContact == undefined
+    if (
+      !!name &&
+      !!family &&
+      !!numberPhone &&
+      !!relation &&
+      !!email  && Object.keys(filterContact).length === 0
     ) {
       console.log("alki");
       const newContact = {
@@ -55,8 +61,7 @@ function MenuRight({
       !!numberPhone &&
       !!relation &&
       !!email &&
-      filterContact !== undefined
-    ) {
+      Object.keys(filterContact).length != 0    ) {
       console.log("filter");
 
       const newContact = {
@@ -111,11 +116,10 @@ function MenuRight({
         {titles.map((item) => {
           return (
             <InputContact
-              valuee={filterContact === undefined ? "u" : item.value}
+              valuee={Object.keys(filterContact).length == 0 ? "" : item.value}
               title={item.title}
               setValue={item.setValue}
               showError={showErrors}
-              
             />
           );
         })}

@@ -9,6 +9,5 @@ export async function editContact(id: string, data: {}) {
 }
 
 export async function deleteContact(id: string) {
-  const res = await axios.delete(`http://localhost:3000/contact/${id}`);
-  console.log(res.data);
+   await axios.delete(`http://localhost:3000/contact/${id}`);
 }
