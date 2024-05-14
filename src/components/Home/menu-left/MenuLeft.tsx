@@ -5,8 +5,9 @@ import {getContact} from "../../../api/get-contact/getContact";
 function MenuLeft({
   isChange , setFilterContact
 }: {
-  isChange:boolean;setFilterContact : React.Dispatch<React.SetStateAction<{}>>
+  isChange:boolean; setFilterContact : React.Dispatch<React.SetStateAction<{}>>
 }) {
+  console.log(isChange)
 
   const [contacts, setContacts] = useState([]);
 
@@ -25,7 +26,7 @@ function MenuLeft({
      border-neutral-200 border-1 border-b  shadow-md"
       >
         {contacts.map((item) => (
-          <OneCard Contact={item} key={item.id} setFilterContact = {setFilterContact} />
+          <OneCard Contact={item} key={item.id} setFilterContact = {setFilterContact} isChange={isChange} />
         ))}
       </div>
     </div>

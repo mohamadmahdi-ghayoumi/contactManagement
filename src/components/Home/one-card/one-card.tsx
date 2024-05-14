@@ -1,21 +1,43 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TypeContact } from "../../../types";
 import { getFilterContact } from "../../../api/get-contact/getContact";
+import { deleteContact } from "../../../api/delete-contact/deleteContact";
 
 
 
-function OneCard({Contact , setFilterContact} : {Contact : TypeContact , setFilterContact : React.Dispatch<React.SetStateAction<{}>>}) {
+function OneCard({Contact , setFilterContact , isChange} : {Contact : TypeContact , setFilterContact : React.Dispatch<React.SetStateAction<{}>> , isChange : boolean}) {
+console.log(isChange)
+
+const [isChangeDelete, setIsChangeDelete] = useState(false);
 
   // useEffect(()=>{
   //   getFilterContact(Contact.id).then(data=>{
   //     console.log(data)
   //   })
   // } , [Contact.id])
+
+
 function handleEdit(){
   getFilterContact(Contact.id).then(data=>{
       setFilterContact(data)
 
   })
+}
+// useEffect(()=>{
+//   deleteContact(Contact.id)
+//   setIsChangeDelete(false)
+
+// },[isChangeDelete])
+useEffect(() => {
+  if (isChangeDelete) {
+    deleteContact(Contact.id);
+    setIsChangeDelete(false);
+  }
+}, [isChangeDelete]);
+
+function handleDelete(){
+  setIsChangeDelete(true)
+
 }
 
 
@@ -42,7 +64,7 @@ function handleEdit(){
         <span className="bg-blue-500 text-white  px-2 py-1 rounded-r-md" onClick={handleEdit}>
           ویرایش{" "}
         </span>
-        <span className="bg-red-500 text-white px-2 py-1 rounded-l-md" >حذف</span>
+        <span className="bg-red-500 text-white px-2 py-1 rounded-l-md" onClick={handleDelete}>حذف</span>
       </div>
     </div>
   );
