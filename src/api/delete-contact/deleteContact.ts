@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 
 export async function editContact(id: string, data: {}) {
   console.log(data);

@@ -6,15 +6,12 @@ import { deleteContact } from "../../../api/delete-contact/deleteContact";
 function OneCard({
   Contact,
   setFilterContact,
-  isChange, render , setRender
+  dataGetHandler,
 }: {
   Contact: TypeContact;
   setFilterContact: React.Dispatch<React.SetStateAction<{}>>;
-  isChange: boolean;render : boolean , setRender : React.Dispatch<React.SetStateAction<boolean>>
+  dataGetHandler: () => void;
 }) {
-  console.log(isChange);
-
-
 
   function handleEdit() {
     getFilterContact(Contact.id).then((data) => {
@@ -22,10 +19,9 @@ function OneCard({
     });
   }
 
-
   function handleDelete() {
     deleteContact(Contact.id);
-    setRender(!render)
+    dataGetHandler();
   }
 
   return (
